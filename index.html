@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CollabSphere</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+<style>
+/* Global Styling */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: #eef1f7;
+}
+
+/* Login Page */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.login-form {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 300px;
+}
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+button {
+  width: 100%;
+  padding: 12px;
+  background: #4c6ef5;
+  border: none;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+}
+button:hover {
+  background: #3b5bdb;
+}
+
+/* Main Dashboard Styling */
+header {
+  background: linear-gradient(90deg, #0f2027, #203a43, #2c5364);
+  color: white;
+  padding: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo {
+  font-size: 26px;
+  font-weight: 600;
+}
+.tagline {
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+/* LAYOUT */
+.container {
+  display: flex;
+  height: 90vh;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 220px;
+  background: #1e2a38;
+  color: white;
+  padding: 20px;
+}
+.sidebar h3 {
+  margin-top: 0;
+  font-weight: 500;
+}
+.menu {
+  list-style: none;
+  padding: 0;
+}
+.menu li {
+  padding: 12px;
+  margin: 8px 0;
+  background: #2f3e52;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: .3s;
+}
+.menu li:hover {
+  background: #4c6ef5;
+}
+
+/* MAIN */
+.main {
+  flex: 1;
+  padding: 25px;
+  overflow-y: auto;
+}
+
+/* CARD */
+.card {
+  background: white;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+</style>
+</head>
+
+<body>
+
+<!-- Login Page -->
+<div id="loginPage" class="login-container">
+  <div class="login-form">
+    <h2>Login to CollabSphere</h2>
+    <form id="loginForm">
+      <input type="text" id="username" placeholder="Enter your name" required>
+      <input type="password" id="password" placeholder="Enter password" required>
+      <button type="submit">Login</button>
+    </form>
+  </div>
+</div>
+
+<!-- CollabSphere Dashboard -->
+<div id="dashboardPage" style="display:none;">
+  <header>
+    <div>
+      <div class="logo">CollabSphere</div>
+      <div class="tagline">Connect • Collaborate • Complete</div>
+    </div>
+    <div id="userGreeting">Welcome, User</div>
+  </header>
+
+  <div class="container">
+    <div class="sidebar">
+      <h3>Workspace</h3>
+      <ul class="menu">
+        <li class="active" onclick="showDashboard()">Dashboard</li>
+        <li onclick="showTeamChat()">Team Chat</li>
+        <li onclick="showProjects()">Projects</li>
+        <li onclick="showKnowledgeBase()">Knowledge Base</li>
+        <li onclick="showMeetings()">Meetings</li>
+        <li onclick="showSettings()">Settings</li>
+      </ul>
+    </div>
+
+    <div class="main">
+      <div class="card">
+        <h3>📊 My Tasks</h3>
+        <p>Here will be your task list and project information</p>
+      </div>
+
+      <div class="card">
+        <h3>💬 Team Chat</h3>
+        <p>Here will be your team chat interface</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Login Form Handling
+document.getElementById('loginForm').addEventListener('submit', function(event) {
+  event.preventDefault();
+  
+  var username = document.getElementById('username').value;
+  var password = document.getElementById('password').value;
+
+  // Simple validation for username and password
+  if (username === "" || password === "") {
+    alert("Both fields are required!");
+  } else {
+    // Simulate successful login and redirect
+    alert("Login successful! Welcome " + username);
+    
+    // Store the username in sessionStorage (temporary)
+    sessionStorage.setItem("username", username);
+    
+    // Switch to Dashboard Page
+    document.getElementById('loginPage').style.display = 'none';
+    document.getElementById('dashboardPage').style.display = 'block';
+
+    // Fetch the username from session storage and display it
+    const storedUsername = sessionStorage.getItem("username");
+    if (storedUsername) {
+      document.getElementById("userGreeting").innerHTML = "Welcome, " + storedUsername;
+    }
+  }
+});
+
+// Example Functions for Sidebar Menu (For demonstration purposes)
+function showDashboard() {
+  alert("Dashboard");
+}
+function showTeamChat() {
+  alert("Team Chat");
+}
+function showProjects() {
+  alert("Projects");
+}
+function showKnowledgeBase() {
+  alert("Knowledge Base");
+}
+function showMeetings() {
+  alert("Meetings");
+}
+function showSettings() {
+  alert("Settings");
+}
+</script>
+
+</body>
+</html>
